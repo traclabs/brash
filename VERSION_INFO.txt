@@ -1,0 +1,5 @@
+--- LATEST:
+fsw_ros2_bridge git@bitbucket.org:traclabs/fsw_ros2_bridge.git galactic-devel
+cfe_ros2_bridge_plugin git@bitbucket.org:traclabs/cfe_ros2_bridge_plugin.git galactic-devel
+cfs_groundsystem_bridge_plugin git@bitbucket.org:traclabs/cfs_groundsystem_bridge_plugin.git galactic-devel
+
