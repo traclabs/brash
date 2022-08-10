@@ -7,6 +7,14 @@
 node_modules/
 dist/
 
+# ros wokspace files
+build/
+log/
+install/
+src/
+
+.rosinstall
+
 # Compiled Java class files
 *.class
 
