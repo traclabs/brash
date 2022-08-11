@@ -7,7 +7,6 @@ from glob import glob
 from os import getcwd, system, chdir, popen, environ
 import subprocess
 import argparse
-from clint.textui import colored
 
 
 def get_project_name():
@@ -93,9 +92,9 @@ if __name__ == "__main__":
 
     pname = get_project_name()
 
-    print(colored.cyan("========================="))
-    print(colored.cyan(pname.upper() + " INSTALL SCRIPT"))
-    print(colored.cyan("========================="))
+    print("=========================")
+    print(pname.upper() + " INSTALL SCRIPT")
+    print("=========================")
 
     # set up the argument parser
     parser = argparse.ArgumentParser(description=str('Install ' + pname.upper() + ' Packages'))
@@ -105,7 +104,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     tag = args.version[0]
-    print("installing TAG: " + colored.yellow("\'" + tag + "\'"))
+    print("installing TAG: \'" + tag + "\'")
 
     git_pull()
 
@@ -124,14 +123,14 @@ if __name__ == "__main__":
         try:
             print("updating code...")
             if run_rosinstall() > 0:
-                print(colored.red("problem running install script..."))
+                print("problem running install script...")
                 sys.exit(0)
         except:
-            print(colored.red("problem running install script..."))
+            print("problem running install script...")
             sys.exit(0)
 
     else:
-        print(colored.yellow("not installing repositories..."))
+        print("not installing repositories...")
 
     rc = 1
     try:
@@ -146,8 +145,8 @@ if __name__ == "__main__":
             if not rc == 0:
                 raise Exception
     except:
-        print(colored.red("\nFailed to update depends \n"))
+        print("\nFailed to update depends \n")
         tag = "UNKNOWN"
         sys.exit(0)
         
-    print(colored.green("successfully finished INSTALL script"))
+    print("successfully finished INSTALL script")
