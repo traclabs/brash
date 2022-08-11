@@ -1,35 +1,41 @@
-image: ubuntu:focal
+image: osrf/ros:galactic-desktop
 
 pipelines:
   default:
     - step:
-        name: 'Build and Test Workspace'
-        size: 2x
-        script:
-          - apt update
-          - export DEBIAN_FRONTEND=noninteractive
-          - apt -y install git
-          - locale
-          - apt update
-          - apt -y install locales
-          - locale-gen en_US en_US.UTF-8
-          - update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-          - export LANG=en_US.UTF-8
-          - locale
-          - apt update
-          - apt -y install curl gnupg lsb-release
-          - curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-          - echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
-          - apt update
-          - apt -y upgrade
-          - apt -y install ros-galactic-desktop python3-rosdep python3-wstool
-          - source /opt/ros/galactic/setup.bash
-          - rosdep init
-          - rosdep update
-          - ./install.py
-          - apt -y install python3-colcon* 
-          - rosdep install --from-paths src -y --ignore-src
-          - colcon build
-          - . install/local_setup.bash
-          - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV"
+      image: osrf/ros:galactic-desktop
+      name: 'Docket Test'
+      size: 2x
+      script:
+        - ros2 wtf
+    # - step:
+    #     name: 'Build and Test Workspace'
+    #     size: 2x
+    #     script:
+    #       - apt update
+    #       - export DEBIAN_FRONTEND=noninteractive
+    #       - apt -y install git
+    #       - locale
+    #       - apt update
+    #       - apt -y install locales
+    #       - locale-gen en_US en_US.UTF-8
+    #       - update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+    #       - export LANG=en_US.UTF-8
+    #       - locale
+    #       - apt update
+    #       - apt -y install curl gnupg lsb-release
+    #       - curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+    #       - echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+    #       - apt update
+    #       - apt -y upgrade
+    #       - apt -y install ros-galactic-desktop python3-rosdep python3-wstool
+    #       - source /opt/ros/galactic/setup.bash
+    #       - rosdep init
+    #       - rosdep update
+    #       - ./install.py
+    #       - apt -y install python3-colcon* 
+    #       - rosdep install --from-paths src -y --ignore-src
+    #       - colcon build
+    #       - . install/local_setup.bash
+    #       - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV"
           
