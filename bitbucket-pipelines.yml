@@ -9,9 +9,8 @@ pipelines:
           - ls
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
-          - apt -y install git pip
+          - apt -y install git
           - git branch
-          - pip install clint
           - mkdir src
           - cd src
           - git clone git@bitbucket.org:traclabs/fsw_ros2_bridge.git
@@ -70,7 +69,7 @@ pipelines:
           - install/**
           - log/**
     - step:
-        name: 'Build Workspace'
+        name: 'Test Workspace'
         script: 
           - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV"
           
