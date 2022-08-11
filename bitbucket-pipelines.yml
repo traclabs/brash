@@ -1,4 +1,4 @@
-image: ubuntu:bimage: ubuntu:focal
+mage: ubuntu:focal
 
 pipelines:
   default:
