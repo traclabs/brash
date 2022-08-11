@@ -58,6 +58,10 @@ pipelines:
         script:
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
+          - apt update
+          - apt -y upgrade
+          - apt -y install ros-galactic-desktop python3-rosdep python3-wstool
+          - source /opt/ros/galactic/setup.bash
           - rosdep init
           - rosdep update
           - ./install.py
