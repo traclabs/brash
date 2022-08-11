@@ -3,11 +3,11 @@ image: osrf/ros:galactic-desktop
 pipelines:
   default:
     - step:
-      image: osrf/ros:galactic-desktop
-      name: 'Docket Test'
-      size: 2x
-      script:
-        - ros2 wtf
+        name: 'Docket Test'
+        image: osrf/ros:galactic-desktop
+        size: 2x
+        script:
+          - ros2 wtf
     # - step:
     #     name: 'Build and Test Workspace'
     #     size: 2x
