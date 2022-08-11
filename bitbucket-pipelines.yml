@@ -1,7 +1,5 @@
 image: ubuntu:bimage: ubuntu:focal
 
-image: ubuntu:focal
-
 pipelines:
   default:
     - step:
