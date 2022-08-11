@@ -7,6 +7,8 @@ pipelines:
         image: osrf/ros:galactic-desktop
         size: 2x
         script:
+          - ls /opt/ros
+          - source /opt/ros/galactic/setup.bash
           - ros2 wtf
     # - step:
     #     name: 'Build and Test Workspace'
