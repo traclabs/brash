@@ -15,7 +15,7 @@ pipelines:
           - mkdir src
           - cd src
           - git clone git@bitbucket.org:traclabs/fsw_ros2_bridge.git
-          - ls fsw_ros2_bridge.git
+          - ls fsw_ros2_bridge
           - git clone git@bitbucket.org:traclabs/cfs_groundsystem_bridge_plugin.git
           - ls cfs_groundsystem_bridge_plugin
 #    - step:
