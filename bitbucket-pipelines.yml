@@ -29,8 +29,8 @@ pipelines:
           - apt -y install git python3-rosdep python3-wstool python3-colcon*
           - apt -y upgrade
           - source /opt/ros/galactic/setup.bash
-          - rosdep init
-          # - rosdep update
+          # - rosdep init
+          - rosdep update
           - ./install.py
           - rosdep install --from-paths src -y --ignore-src
         artifacts:
