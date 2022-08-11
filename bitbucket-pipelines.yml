@@ -3,33 +3,7 @@ image: ubuntu:focal
 pipelines:
   default:
     - step:
-        name: 'Check in'
-        script:
-          - pwd
-          - ls
-          - apt update
-          - export DEBIAN_FRONTEND=noninteractive
-          - apt -y install git
-          - git branch
-          - mkdir src
-          - cd src
-          - git clone git@bitbucket.org:traclabs/fsw_ros2_bridge.git
-          - ls fsw_ros2_bridge
-          - git clone git@bitbucket.org:traclabs/cfs_groundsystem_bridge_plugin.git
-          - ls cfs_groundsystem_bridge_plugin
-          - git clone git@bitbucket.org:traclabs/cfe_ros2_bridge_plugin.git
-          - ls cfe_ros2_bridge_plugin
-          - git clone git@bitbucket.org:traclabs/rqt_fsw_bridge.git
-          - ls rqt_fsw_bridge
-        artifacts:
-          - src/**
-    - step:
-        name: 'Check persistence'
-        script:
-          - ls
-          - ls src
-    - step:
-        name: 'Install ROS2'
+        name: 'Build and Test Workspace'
         size: 2x
         script:
           - apt update
@@ -50,18 +24,6 @@ pipelines:
           - apt -y upgrade
           - apt -y install ros-galactic-desktop python3-rosdep python3-wstool
           - source /opt/ros/galactic/setup.bash
-        artifacts:
-          - /opt/ros/**
-    - step:
-        name: 'Build Workspace'
-        size: 2x
-        script:
-          - apt update
-          - export DEBIAN_FRONTEND=noninteractive
-          - apt update
-          - apt -y upgrade
-          - apt -y install ros-galactic-desktop python3-rosdep python3-wstool
-          - source /opt/ros/galactic/setup.bash
           - rosdep init
           - rosdep update
           - ./install.py
@@ -69,13 +31,5 @@ pipelines:
           - rosdep install --from-paths src -y --ignore-src
           - colcon build
           - . install/local_setup.bash
-        artifacts:
-          - src/**
-          - build/**
-          - install/**
-          - log/**
-    - step:
-        name: 'Test Workspace'
-        script: 
           - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV"
           
