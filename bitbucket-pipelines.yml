@@ -52,9 +52,9 @@ pipelines:
           - apt -y upgrade
           - apt -y install ros-galactic-desktop python3-rosdep python3-wstool
           - source /opt/ros/galactic/setup.bash
-          artifacts:
+        artifacts:
           - /opt/ros/**
-  - step:
+    - step:
         name: 'Build Workspace'
         script: 
           - rosdep init
@@ -69,7 +69,7 @@ pipelines:
           - build/**
           - install/**
           - log/**
-  - step:
+    - step:
         name: 'Build Workspace'
         script: 
           - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV"
