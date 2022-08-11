@@ -4,7 +4,7 @@ pipelines:
   default:
     - step:
         image: osrf/ros:galactic-desktop
-        name: 'cCheckout BRASH workspace'
+        name: 'checkout BRASH workspace'
         script:
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
