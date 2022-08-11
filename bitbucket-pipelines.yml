@@ -7,6 +7,9 @@ pipelines:
         script:
           - pwd
           - ls
+          - apt update
+          - export DEBIAN_FRONTEND=noninteractive
+          - apt -y install git
           - git branch
     - step:
         name: 'Install ROS2'
