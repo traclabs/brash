@@ -1,0 +1,41 @@
+image: ubuntu:focal
+
+pipelines:
+  default:
+    - step:
+        name: 'Where am I?'
+        script:
+          - ls
+          - pwd
+    - step:
+        name: 'Install ROS2'
+        script:
+          - apt update
+          - export DEBIAN_FRONTEND=noninteractive
+          - apt -y install aptitude
+          - locale
+          - apt update
+          - apt -y install locales
+          - locale-gen en_US en_US.UTF-8
+          - update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+          - export LANG=en_US.UTF-8
+          - locale
+          - apt update
+          - apt -y install curl gnupg lsb-release
+          - curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+          - echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+          - more /etc/apt/sources.list.d/ros2.list
+          - apt update
+          - apt -y upgrade
+          - apt -y install ros-galactic-desktop
+          - source /opt/ros/galactic/setup.bash
+    - step:
+        name: 'Install Workspace'
+        script:
+          - ls
+          - pwd
+          - apt update
+          - export DEBIAN_FRONTEND=noninteractive
+          - apt -y install pip
+          - pip install clint
+          - ./install.py
