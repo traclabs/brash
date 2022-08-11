@@ -39,5 +39,6 @@ pipelines:
           - ./install.py
           - rosdep install --from-paths src -y --ignore-src
           - colcon build
+          - . install/local_setup.bash
           - ./colcon_test.sh
           
