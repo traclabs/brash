@@ -4,7 +4,6 @@ pipelines:
   default:
     - step:
         name: 'Check in'
-        image: ubuntu:focal
         script:
           - pwd
           - ls
@@ -23,15 +22,15 @@ pipelines:
           - ls cfe_ros2_bridge_plugin
           - git clone git@bitbucket.org:traclabs/rqt_fsw_bridge.git
           - ls rqt_fsw_bridge
+        artifacts:
+          - src/**
     - step:
         name: 'Check persistence'
-        image: ubuntu:focal
         script:
           - ls
           - ls src
     - step:
         name: 'Install ROS2'
-        image: ubuntu:focal
         script:
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
@@ -53,9 +52,10 @@ pipelines:
           - apt -y upgrade
           - apt -y install ros-galactic-desktop python3-rosdep python3-wstool
           - source /opt/ros/galactic/setup.bash
-    - step:
-        name: 'Build and Test Workspace'
-        image: ubuntu:focal
+          artifacts:
+          - /opt/ros/**
+  - step:
+        name: 'Build Workspace'
         script: 
           - rosdep init
           - rosdep update
@@ -64,5 +64,13 @@ pipelines:
           - rosdep install --from-paths src -y --ignore-src
           - colcon build
           - . install/local_setup.bash
+        artifacts:
+          - src/**
+          - build/**
+          - install/**
+          - log/**
+  - step:
+        name: 'Build Workspace'
+        script: 
           - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV"
           
