@@ -33,8 +33,7 @@ pipelines:
         script:
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
-          - apt -y install aptitude pip git
-          - pip install clint
+          - apt -y install git
           - locale
           - apt update
           - apt -y install locales
@@ -55,9 +54,13 @@ pipelines:
           - /opt/ros/**
     - step:
         name: 'Build Workspace'
-        script: 
+        script:
+          - apt update
+          - export DEBIAN_FRONTEND=noninteractive
           - rosdep init
           - rosdep update
+          - apt -y install pip
+          - pip install clint
           - ./install.py
           - apt -y install python3-colcon* 
           - rosdep install --from-paths src -y --ignore-src
