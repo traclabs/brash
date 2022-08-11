@@ -1,9 +1,12 @@
+image: ubuntu:bimage: ubuntu:focal
+
 image: ubuntu:focal
 
 pipelines:
   default:
     - step:
         name: 'Check in'
+        image: ubuntu:focal
         script:
           - pwd
           - ls
@@ -23,7 +26,14 @@ pipelines:
           - git clone git@bitbucket.org:traclabs/rqt_fsw_bridge.git
           - ls rqt_fsw_bridge
     - step:
-        name: 'Build and Test Workspace'
+        name: 'Check persistence'
+        image: ubuntu:focal
+        script:
+          - ls
+          - ls src
+    - step:
+        name: 'Install ROS2'
+        image: ubuntu:focal
         script:
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
@@ -45,6 +55,10 @@ pipelines:
           - apt -y upgrade
           - apt -y install ros-galactic-desktop python3-rosdep python3-wstool
           - source /opt/ros/galactic/setup.bash
+    - step:
+        name: 'Build and Test Workspace'
+        image: ubuntu:focal
+        script: 
           - rosdep init
           - rosdep update
           - ./install.py
