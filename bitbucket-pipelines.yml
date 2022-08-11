@@ -3,10 +3,11 @@ image: ubuntu:focal
 pipelines:
   default:
     - step:
-        name: 'Where am I?'
+        name: 'Check in'
         script:
-          - ls
           - pwd
+          - ls
+          - git branch
     - step:
         name: 'Install ROS2'
         script:
@@ -32,10 +33,10 @@ pipelines:
     - step:
         name: 'Install Workspace'
         script:
-          - ls
-          - pwd
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
-          - apt -y install pip
+          - apt -y install pip git
           - pip install clint
+          - source /opt/ros/galactic/setup.bash
           - ./install.py
+          
