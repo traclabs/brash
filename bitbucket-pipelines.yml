@@ -16,7 +16,8 @@ pipelines:
         script:
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
-          - apt -y install aptitude
+          - apt -y install aptitude pip git
+          - pip install clint
           - locale
           - apt update
           - apt -y install locales
@@ -33,13 +34,10 @@ pipelines:
           - apt -y upgrade
           - apt -y install ros-galactic-desktop
           - source /opt/ros/galactic/setup.bash
-    - step:
-        name: 'Install Workspace'
-        script:
-          - apt update
-          - export DEBIAN_FRONTEND=noninteractive
-          - apt -y install pip git
-          - pip install clint
-          - source /opt/ros/galactic/setup.bash
+          - rosdep init
+          - rosdep update
           - ./install.py
+          - rosdep install --from-paths src -y --ignore-src
+          - colcon build
+          - ./colcon_test.sh
           
