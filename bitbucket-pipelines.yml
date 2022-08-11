@@ -9,8 +9,10 @@ pipelines:
           - ls
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
-          - apt -y install git
+          - apt -y install git pip
           - git branch
+          - pip install clint
+          - ./install.py
     - step:
         name: 'Install ROS2'
         script:
