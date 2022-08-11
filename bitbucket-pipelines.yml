@@ -18,6 +18,10 @@ pipelines:
           - ls fsw_ros2_bridge
           - git clone git@bitbucket.org:traclabs/cfs_groundsystem_bridge_plugin.git
           - ls cfs_groundsystem_bridge_plugin
+          - git clone git@bitbucket.org:traclabs/cfe_ros2_bridge_plugin.git
+          - ls cfe_ros2_bridge_plugin
+          - git clone git@bitbucket.org:traclabs/rqt_fsw_bridge.git
+          - ls rqt_fsw_bridge
 #    - step:
 #        name: 'Install ROS2'
 #        script:
