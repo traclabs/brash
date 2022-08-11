@@ -30,6 +30,7 @@ pipelines:
           - ls src
     - step:
         name: 'Install ROS2'
+        size: 2x
         script:
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
@@ -53,13 +54,12 @@ pipelines:
           - /opt/ros/**
     - step:
         name: 'Build Workspace'
+        size: 2x
         script:
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
           - rosdep init
           - rosdep update
-          - apt -y install pip
-          - pip install clint
           - ./install.py
           - apt -y install python3-colcon* 
           - rosdep install --from-paths src -y --ignore-src
