@@ -12,6 +12,9 @@ pipelines:
           - apt -y install git pip
           - git branch
           - pip install clint
+          - mkdir src
+          - cd src
+          - git clone git@bitbucket.org:traclabs/fsw_ros2_bridge.git
     - step:
         name: 'Install ROS2'
         script:
