@@ -32,7 +32,7 @@ pipelines:
           - more /etc/apt/sources.list.d/ros2.list
           - apt update
           - apt -y upgrade
-          - apt -y install ros-galactic-desktop python3-rosdep 
+          - apt -y install ros-galactic-desktop python3-rosdep python3-wstool
           - source /opt/ros/galactic/setup.bash
           - rosdep init
           - rosdep update
