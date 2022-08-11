@@ -23,7 +23,7 @@ pipelines:
           - git clone git@bitbucket.org:traclabs/rqt_fsw_bridge.git
           - ls rqt_fsw_bridge
     - step:
-        name: 'Install ROS2'
+        name: 'Build and Test Workspace'
         script:
           - apt update
           - export DEBIAN_FRONTEND=noninteractive
@@ -52,5 +52,5 @@ pipelines:
           - rosdep install --from-paths src -y --ignore-src
           - colcon build
           - . install/local_setup.bash
-          - ./colcon_test.sh
+          - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV"
           
