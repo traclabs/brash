@@ -12,7 +12,6 @@ pipelines:
           - apt -y install git pip
           - git branch
           - pip install clint
-          - ./install.py
     - step:
         name: 'Install ROS2'
         script:
