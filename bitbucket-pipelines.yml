@@ -30,7 +30,7 @@ pipelines:
           - apt -y upgrade
           - source /opt/ros/galactic/setup.bash
           - rosdep init
-          - rosdep update
+          # - rosdep update
           - ./install.py
           - rosdep install --from-paths src -y --ignore-src
         artifacts:
