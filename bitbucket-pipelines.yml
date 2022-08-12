@@ -19,7 +19,6 @@ pipelines:
     - step:
         image: osrf/ros:galactic-desktop
         name: 'build workspace'
-        size: 2x
         script:
           - source /opt/ros/galactic/setup.bash  
           - colcon build
@@ -30,7 +29,6 @@ pipelines:
     - step:
         image: osrf/ros:galactic-desktop
         name: 'run colcon tests'
-        size: 2x
         script:
           - source /opt/ros/galactic/setup.bash  
           - . install/local_setup.bash
