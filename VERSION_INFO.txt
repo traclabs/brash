@@ -3,3 +3,4 @@ fsw_ros2_bridge git@bitbucket.org:traclabs/fsw_ros2_bridge.git galactic-devel
 cfe_ros2_bridge_plugin git@bitbucket.org:traclabs/cfe_ros2_bridge_plugin.git ROBOT-590
 cfs_groundsystem_bridge_plugin git@bitbucket.org:traclabs/cfs_groundsystem_bridge_plugin.git galactic-devel
 rqt_fsw_bridge git@bitbucket.org:traclabs/rqt_fsw_bridge.git galactic-devel
+cfe_sbn_bridge_plugin git@bitbucket.org:traclabs/cfe_sbn_bridge_plugin.git galactic-devel
