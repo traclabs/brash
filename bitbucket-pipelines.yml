@@ -1,36 +1,37 @@
 image: osrf/ros:galactic-desktop
 
 pipelines:
-  default:
-    - step:
-        image: osrf/ros:galactic-desktop
-        name: 'checkout BRASH workspace'
-        script:
-          - apt update
-          - export DEBIAN_FRONTEND=noninteractive
-          - apt -y install git python3-rosdep python3-wstool python3-colcon*
-          - apt -y upgrade
-          - source /opt/ros/galactic/setup.bash
-          - rosdep update
-          - ./install.py
-          - rosdep install --from-paths src -y --ignore-src
-        artifacts:
-          - src/**
-    - step:
-        image: osrf/ros:galactic-desktop
-        name: 'build workspace'
-        script:
-          - source /opt/ros/galactic/setup.bash  
-          - colcon build
-        artifacts:
-          - build/**
-          - log/**
-          - install/**
-    - step:
-        image: osrf/ros:galactic-desktop
-        name: 'run colcon tests'
-        script:
-          - source /opt/ros/galactic/setup.bash  
-          - . install/local_setup.bash
-          - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV"
-          
+  custom:
+    nightly-build:
+      - step:
+          image: osrf/ros:galactic-desktop
+          name: 'checkout BRASH workspace'
+          script:
+            - apt update
+            - export DEBIAN_FRONTEND=noninteractive
+            - apt -y install git python3-rosdep python3-wstool python3-colcon*
+            - apt -y upgrade
+            - source /opt/ros/galactic/setup.bash
+            - rosdep update
+            - ./install.py
+            - rosdep install --from-paths src -y --ignore-src
+          artifacts:
+            - src/**
+      - step:
+          image: osrf/ros:galactic-desktop
+          name: 'build workspace'
+          script:
+            - source /opt/ros/galactic/setup.bash  
+            - colcon build
+          artifacts:
+            - build/**
+            - log/**
+            - install/**
+      - step:
+          image: osrf/ros:galactic-desktop
+          name: 'run colcon tests'
+          script:
+            - source /opt/ros/galactic/setup.bash  
+            - . install/local_setup.bash
+            - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV"
+
