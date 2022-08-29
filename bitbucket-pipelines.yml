@@ -33,5 +33,5 @@ pipelines:
           script:
             - source /opt/ros/galactic/setup.bash  
             - . install/local_setup.bash
-            - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV"
+            - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
 
