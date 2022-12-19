@@ -1,0 +1,21 @@
+/**
+  \mainpage BRASH Documentation
+
+<p>Quick Reference</p>
+<ul>
+<li> \ref cfe_sbn_plugin "Main ROS CFE SBN Bridge Application"</li>
+  <ul>
+    <li> \ref cfe_sbn_plugin.cfe_sbn_plugin.FSWPlugin "Entrypoint for ROS SBN Bridge"</li>
+    <li> \ref cfe_sbn_plugin.sbn_peer.SBNPeer "Bridge Peer Class (aka sender)"</li>
+    <li> \ref cfe_sbn_plugin.sbn_receiver.SBNReceiver "Bridge Receiver (server)"</li>
+  </ul>
+</ul>
+
+<br>
+<p>Links:</p>
+<ul>
+<li><a href="https://bitbucket.org/traclabs">Bitbucket</a></li>
+<li><a href="https://github.com/traclabs">Github</a></li>
+</ul>
+
+**/
