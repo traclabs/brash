@@ -6,4 +6,4 @@ cfs_groundsystem_bridge_plugin git@bitbucket.org:traclabs/cfs_groundsystem_bridg
 cfe_sbn_bridge_plugin git@bitbucket.org:traclabs/cfe_sbn_bridge_plugin.git galactic-devel
 rqt_fsw_bridge_dictionary git@bitbucket.org:traclabs/rqt_fsw_bridge_dictionary.git galactic-devel
 rqt_fsw_bridge_config git@bitbucket.org:traclabs/rqt_fsw_bridge_config.git galactic-devel
-
+brash_application_tools git git@bitbucket.org:traclabs/brash_application_tools.git galactic-devel
