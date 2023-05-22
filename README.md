@@ -9,7 +9,7 @@ Stephen Hart swhart@traclabs.com
 
 ### Install Ubuntu
 1. Install Ubuntu 22.04 LTS
-  * Use desktop install
+    * Use desktop install
   * Choose Minimal installation
   * Select Download updates while installing
   * Select Install 3rd party software
@@ -32,7 +32,7 @@ Stephen Hart swhart@traclabs.com
 4. Update environment for ROS2
   * Add `. /opt/ros/humble/setup.bash` to your .bashrc file
 5. Install other dependencies
-  * `sudo apt install phton3-wstool python3-rosdep2`
+  * `sudo apt install python3-wstool python3-rosdep2`
   * `rosdep update`
   * `sudo apt install ros-dev-tools ros-humble-joint-state-publisher-gui`
 
@@ -65,6 +65,6 @@ Stephen Hart swhart@traclabs.com
   * `git checkout galactic-devel`
   * `./install.py`
 2. Compile and test
-  * `colcon build â€“symlink-install`
+  * `colcon build –symlink-install`
   * `./colcon_test.sh`
 
