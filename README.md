@@ -62,7 +62,7 @@ Stephen Hart swhart@traclabs.com
     * `cd humble_ws`
     * `git clone git@bitbucket.org:traclabs/brash.git`
     * `cd brash`
-    * `git checkout galactic-devel`
+    * `git checkout devel`
     * `./install.py`
 2. Compile and test
     * `colcon build �symlink-install`
