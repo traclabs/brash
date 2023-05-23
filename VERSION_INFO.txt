@@ -1,10 +1,10 @@
 --- LATEST:
-fsw_ros2_bridge git@bitbucket.org:traclabs/fsw_ros2_bridge.git galactic-devel
-fsw_ros2_bridge_msgs git@bitbucket.org:traclabs/fsw_ros2_bridge_msgs.git galactic-devel
-cfe_ros2_bridge_plugin git@bitbucket.org:traclabs/cfe_ros2_bridge_plugin.git galactic-devel
-cfs_groundsystem_bridge_plugin git@bitbucket.org:traclabs/cfs_groundsystem_bridge_plugin.git galactic-devel
-cfe_sbn_bridge_plugin git@bitbucket.org:traclabs/cfe_sbn_bridge_plugin.git galactic-devel
-rqt_fsw_bridge_dictionary git@bitbucket.org:traclabs/rqt_fsw_bridge_dictionary.git galactic-devel
-rqt_fsw_bridge_config git@bitbucket.org:traclabs/rqt_fsw_bridge_config.git galactic-devel
-brash_application_tools git@bitbucket.org:traclabs/brash_application_tools.git galactic-devel
-iss_description git@bitbucket.org:traclabs/iss_description.git galactic-devel
+fsw_ros2_bridge git@bitbucket.org:traclabs/fsw_ros2_bridge.git devel
+fsw_ros2_bridge_msgs git@bitbucket.org:traclabs/fsw_ros2_bridge_msgs.git devel
+cfe_ros2_bridge_plugin git@bitbucket.org:traclabs/cfe_ros2_bridge_plugin.git devel
+cfs_groundsystem_bridge_plugin git@bitbucket.org:traclabs/cfs_groundsystem_bridge_plugin.git devel
+cfe_sbn_bridge_plugin git@bitbucket.org:traclabs/cfe_sbn_bridge_plugin.git devel
+rqt_fsw_bridge_dictionary git@bitbucket.org:traclabs/rqt_fsw_bridge_dictionary.git devel
+rqt_fsw_bridge_config git@bitbucket.org:traclabs/rqt_fsw_bridge_config.git devel
+brash_application_tools git@bitbucket.org:traclabs/brash_application_tools.git devel
+iss_description git@bitbucket.org:traclabs/iss_description.git devel
