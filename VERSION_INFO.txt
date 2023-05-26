@@ -8,7 +8,7 @@ rqt_fsw_bridge_config git@bitbucket.org:traclabs/rqt_fsw_bridge_config.git devel
 brash_application_tools git@bitbucket.org:traclabs/brash_application_tools.git devel
 
 --- ISS-DEMO:
-iss_description git@bitbucket.org:traclabs/iss_description.git devel
+iss_description git@bitbucket.org:traclabs/iss_description.git galactic-devel
 
 --- CFS-GROUNDSYSTEM-PLUGIN:
 cfs_groundsystem_bridge_plugin git@bitbucket.org:traclabs/cfs_groundsystem_bridge_plugin.git devel
