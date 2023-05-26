@@ -1,8 +1,6 @@
-image: osrf/ros:galactic-desktop
-
 pipelines:
   custom:
-    nightly-build:
+    nightly-galactic-build:
       - step:
           image: osrf/ros:galactic-desktop
           name: 'checkout BRASH workspace'
@@ -32,6 +30,39 @@ pipelines:
           name: 'run colcon tests'
           script:
             - source /opt/ros/galactic/setup.bash  
+            - . install/local_setup.bash
+            - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
+            
+    nightly-humble-build:
+      - step:
+          image: osrf/ros:humble-desktop
+          name: 'checkout BRASH workspace'
+          script:
+            - apt update
+            - export DEBIAN_FRONTEND=noninteractive
+            - apt -y install git python3-rosdep python3-wstool python3-colcon*
+            - apt -y upgrade
+            - source /opt/ros/humble/setup.bash
+            - rosdep update
+            - ./install.py
+            - rosdep install --from-paths src -y --ignore-src
+          artifacts:
+            - src/**
+      - step:
+          image: osrf/ros:humble-desktop
+          name: 'build workspace'
+          script:
+            - source /opt/ros/humble/setup.bash  
+            - colcon build
+          artifacts:
+            - build/**
+            - log/**
+            - install/**
+      - step:
+          image: osrf/ros:humble-desktop
+          name: 'run colcon tests'
+          script:
+            - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
             - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
 
