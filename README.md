@@ -39,10 +39,10 @@ Stephen Hart swhart@traclabs.com
 ### Install TRACLabs cFS
 1. Install software
     * `cd ~/code`
-    *  `git clone git@github.com:traclabs/cFS.git TL_cFS`
-    *  `cd TL_cFS`
-    *  `git checkout submodule-cleanup`
-    *  `git submodule init`
+    * `git clone git@github.com:traclabs/cFS.git TL_cFS`
+    * `cd TL_cFS`
+    * `git checkout submodule-cleanup`
+    * `git submodule init`
     * `git submodule update`
     * `git checkout main`
     * `cp cfe/cmake/Makefile.sample Makefile`
@@ -62,8 +62,8 @@ Stephen Hart swhart@traclabs.com
     * `cd humble_ws`
     * `git clone git@bitbucket.org:traclabs/brash.git`
     * `cd brash`
-    * `git checkout devel`
-    * `./install.py`
+    * `git checkout vcstool`
+    * `vcs import src < brash.repos`
 2. Compile and test
     * `colcon build �symlink-install`
     * `./colcon_test.sh`
