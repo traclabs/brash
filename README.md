@@ -32,7 +32,7 @@ Stephen Hart swhart@traclabs.com
 4. Update environment for ROS2
     *  Add `. /opt/ros/humble/setup.bash` to your .bashrc file
 5. Install other dependencies
-    *  `sudo apt install python3-wstool python3-rosdep2`
+    *  `sudo apt install python3-wstool python3-vcstool python3-rosdep2`
     *  `rosdep update`
     *  `sudo apt install ros-dev-tools ros-humble-joint-state-publisher-gui`
 
