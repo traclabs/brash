@@ -65,6 +65,6 @@ Stephen Hart swhart@traclabs.com
     * `git checkout vcstool`
     * `vcs import src < brash.repos`
 2. Compile and test
-    * `colcon build �symlink-install`
+    * `colcon build --symlink-install`
     * `./colcon_test.sh`
 
