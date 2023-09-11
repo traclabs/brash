@@ -1,0 +1,5 @@
+repositories:
+  iss_description:
+    type: git
+    url: git@bitbucket.org:traclabs/iss_description.git
+    version: galactic-devel
