@@ -1,38 +1,5 @@
 pipelines:
   custom:
-    nightly-galactic-build:
-      - step:
-          image: osrf/ros:galactic-desktop
-          name: 'checkout BRASH workspace'
-          script:
-            - apt update
-            - export DEBIAN_FRONTEND=noninteractive
-            - apt -y install git python3-rosdep python3-wstool python3-colcon*
-            - apt -y upgrade
-            - source /opt/ros/galactic/setup.bash
-            - rosdep update
-            - ./install.py
-            - rosdep install --from-paths src -y --ignore-src
-          artifacts:
-            - src/**
-      - step:
-          image: osrf/ros:galactic-desktop
-          name: 'build workspace'
-          script:
-            - source /opt/ros/galactic/setup.bash  
-            - colcon build
-          artifacts:
-            - build/**
-            - log/**
-            - install/**
-      - step:
-          image: osrf/ros:galactic-desktop
-          name: 'run colcon tests'
-          script:
-            - source /opt/ros/galactic/setup.bash  
-            - . install/local_setup.bash
-            - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
-            
     nightly-humble-build:
       - step:
           image: osrf/ros:humble-desktop
@@ -66,3 +33,59 @@ pipelines:
             - . install/local_setup.bash
             - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
 
+
+    full-cfe-build:
+      - step:
+          image: osrf/ros:humble-desktop
+          name: 'checkout BRASH workspace'
+          script:
+            - apt update
+            - export DEBIAN_FRONTEND=noninteractive
+            - apt -y install git python3-rosdep python3-wstool python3-colcon*
+            - apt -y upgrade
+            - source /opt/ros/humble/setup.bash
+            - rosdep update
+            - vcs import src < brash.repos
+            - rosdep install --from-paths src -y --ignore-src
+          artifacts:
+            - src/**
+      - step:
+          image: osrf/ros:humble-desktop
+          name: 'build workspace'
+          script:
+            - source /opt/ros/humble/setup.bash
+            - cd src/cfe_sbn_bridge_plugin
+            - git checkout feature/launch-test-standup
+            - colcon build
+          artifacts:
+            - build/**
+            - log/**
+            - install/**
+      - step:
+          image: osrf/ros:humble-desktop
+          name: 'checkout cFS workspace'
+          script:
+            - git clone git@github.com:traclabs/cFS.git
+            - pushd cFS
+            - git checkout submodule-cleanup
+            - git submodule init
+            - git submodule update
+            - git checkout main
+            - cp cfe/cmake/Makefile.sample Makefile
+            - cp -r cfe/cmake/sample_defs sample_defs
+            - make SIMULATION=native prep
+            - make
+            - make install
+            - cd ..
+          artifacts:
+            - build/**
+            - log/**
+            - install/**
+            - cFS/**
+      - step:
+          image: osrf/ros:humble-desktop
+          name: 'run colcon tests'
+          script:
+            - source /opt/ros/humble/setup.bash  
+            - . install/local_setup.bash
+            - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
