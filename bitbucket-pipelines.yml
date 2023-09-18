@@ -76,7 +76,7 @@ pipelines:
             - cd src/cfe_sbn_bridge_plugin
             - git checkout feature/launch-test-standup
             - cd ../..
-            - colcon build
+            - colcon build --symlink-install
           artifacts:
             - build/**
             - log/**
