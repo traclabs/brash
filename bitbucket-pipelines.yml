@@ -58,6 +58,7 @@ pipelines:
             - source /opt/ros/humble/setup.bash
             - cd src/cfe_sbn_bridge_plugin
             - git checkout feature/launch-test-standup
+            - cd ../..
             - colcon build
           artifacts:
             - build/**
@@ -88,6 +89,7 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'run colcon tests'
           script:
+            - export CFE_ROOT=$(pwd)/cFS
             - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
             - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
