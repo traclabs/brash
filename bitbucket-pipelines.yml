@@ -81,6 +81,7 @@ pipelines:
             - build/**
             - log/**
             - install/**
+            - src/**
       - step:
           image: osrf/ros:humble-desktop
           name: 'checkout cFS'
@@ -101,6 +102,7 @@ pipelines:
             - build/**
             - log/**
             - install/**
+            - src/**
             - cFS/**
       - step:
           image: osrf/ros:humble-desktop
