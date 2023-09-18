@@ -52,7 +52,7 @@ pipelines:
             - make install
             - cd ..
 
-    full-cfe-build:
+    full-brash-cfe-build:
       - step:
           image: osrf/ros:humble-desktop
           name: 'checkout BRASH workspace'
