@@ -7,11 +7,11 @@ pipelines:
           script:
             - apt update
             - export DEBIAN_FRONTEND=noninteractive
-            - apt -y install git python3-rosdep python3-wstool python3-colcon*
+            - apt -y install git python3-rosdep python3-vcstool python3-wstool python3-colcon*
             - apt -y upgrade
             - source /opt/ros/humble/setup.bash
             - rosdep update
-            - ./install.py
+            - vcs import src < brash.repos
             - rosdep install --from-paths src -y --ignore-src
           artifacts:
             - src/**
@@ -41,7 +41,7 @@ pipelines:
           script:
             - apt update
             - export DEBIAN_FRONTEND=noninteractive
-            - apt -y install git python3-rosdep python3-wstool python3-colcon*
+            - apt -y install git python3-rosdep python3-vcstool python3-wstool python3-colcon*
             - apt -y upgrade
             - source /opt/ros/humble/setup.bash
             - rosdep update
