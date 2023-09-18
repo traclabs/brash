@@ -1,0 +1,29 @@
+repositories:
+  brash_application_tools:
+    type: git
+    url: https://bitbucket.org/traclabs/brash_application_tools.git
+    version: devel
+  cfe_ros2_bridge_plugin:
+    type: git
+    url: https://bitbucket.org/traclabs/cfe_ros2_bridge_plugin.git
+    version: devel
+  cfe_sbn_bridge_plugin:
+    type: git
+    url: https://bitbucket.org/traclabs/cfe_sbn_bridge_plugin.git
+    version: devel
+  fsw_ros2_bridge:
+    type: git
+    url: https://bitbucket.org/traclabs/fsw_ros2_bridge.git
+    version: devel
+  fsw_ros2_bridge_msgs:
+    type: git
+    url: https://bitbucket.org/traclabs/fsw_ros2_bridge_msgs.git
+    version: devel
+  rqt_fsw_bridge_config:
+    type: git
+    url: https://bitbucket.org/traclabs/rqt_fsw_bridge_config.git
+    version: devel
+  rqt_fsw_bridge_dictionary:
+    type: git
+    url: https://bitbucket.org/traclabs/rqt_fsw_bridge_dictionary.git
+    version: devel
