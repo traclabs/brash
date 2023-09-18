@@ -11,6 +11,7 @@ pipelines:
             - apt -y upgrade
             - source /opt/ros/humble/setup.bash
             - rosdep update
+            - mkdir src
             - vcs import src < brash.repos
             - rosdep install --from-paths src -y --ignore-src
           artifacts:
@@ -45,6 +46,7 @@ pipelines:
             - apt -y upgrade
             - source /opt/ros/humble/setup.bash
             - rosdep update
+            - mkdir src
             - vcs import src < brash.repos
             - rosdep install --from-paths src -y --ignore-src
           artifacts:
