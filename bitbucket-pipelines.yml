@@ -34,6 +34,23 @@ pipelines:
             - . install/local_setup.bash
             - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
 
+    test-cfe-build:
+      - step:
+          image: osrf/ros:humble-desktop
+          name: 'cFS pull test'
+          script:
+            - git clone git@github.com:traclabs/cFS.git
+            - pushd cFS
+            - git checkout submodule-cleanup
+            - git submodule init
+            - git submodule update
+            - git checkout main
+            - cp cfe/cmake/Makefile.sample Makefile
+            - cp -r cfe/cmake/sample_defs sample_defs
+            - make SIMULATION=native prep
+            - make
+            - make install
+            - cd ..
 
     full-cfe-build:
       - step:
@@ -53,7 +70,7 @@ pipelines:
             - src/**
       - step:
           image: osrf/ros:humble-desktop
-          name: 'build workspace'
+          name: 'build ROS packages'
           script:
             - source /opt/ros/humble/setup.bash
             - cd src/cfe_sbn_bridge_plugin
@@ -66,7 +83,7 @@ pipelines:
             - install/**
       - step:
           image: osrf/ros:humble-desktop
-          name: 'checkout cFS workspace'
+          name: 'checkout cFS'
           script:
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
