@@ -47,7 +47,7 @@ pipelines:
             - git checkout main
             - cp cfe/cmake/Makefile.sample Makefile
             - cp -r cfe/cmake/sample_defs sample_defs
-            - make SIMULATION=native prep BUILDTYPE=debug OMIT_DEPRECATED=true install
+            - make SIMULATION=native prep
             - make
             - make install
             - cd ..
@@ -86,7 +86,6 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'checkout cFS'
           script:
-            - more /proc/sys/fs/mqueue/msg_max
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git checkout submodule-cleanup
@@ -95,7 +94,7 @@ pipelines:
             - git checkout main
             - cp cfe/cmake/Makefile.sample Makefile
             - cp -r cfe/cmake/sample_defs sample_defs
-            - make SIMULATION=native prep BUILDTYPE=debug OMIT_DEPRECATED=true install
+            - make SIMULATION=native prep
             - make
             - make install
             - cd ..
