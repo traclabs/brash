@@ -39,10 +39,6 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'cFS pull test'
           script:
-            - whoami
-            - more /proc/sys/fs/mqueue/msg_max
-            - echo 20 &>> msg_max
-            - mv msg_max /proc/sys/fs/mqueue/msg_max
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git checkout submodule-cleanup
@@ -90,6 +86,7 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'checkout cFS'
           script:
+            - more /proc/sys/fs/mqueue/msg_max
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git checkout submodule-cleanup
@@ -98,7 +95,7 @@ pipelines:
             - git checkout main
             - cp cfe/cmake/Makefile.sample Makefile
             - cp -r cfe/cmake/sample_defs sample_defs
-            - make SIMULATION=native prep
+            - make SIMULATION=native prep BUILDTYPE=release OMIT_DEPRECATED=true install
             - make
             - make install
             - cd ..
