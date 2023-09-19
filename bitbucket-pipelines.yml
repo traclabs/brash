@@ -51,7 +51,7 @@ pipelines:
             - git checkout main
             - cp cfe/cmake/Makefile.sample Makefile
             - cp -r cfe/cmake/sample_defs sample_defs
-            - make SIMULATION=native prep
+            - make SIMULATION=native prep BUILDTYPE=release OMIT_DEPRECATED=true install
             - make
             - make install
             - cd ..
