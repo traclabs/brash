@@ -39,8 +39,10 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'cFS pull test'
           script:
+            - whoami
             - more /proc/sys/fs/mqueue/msg_max
-            - sudo cat 20 > /proc/sys/fs/mqueue/msg_max
+            - echo 20 &>> msg_max
+            - mv msg_max /proc/sys/fs/mqueue/msg_max
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git checkout submodule-cleanup
