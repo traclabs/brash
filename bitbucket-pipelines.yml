@@ -108,6 +108,7 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'run colcon tests'
           script:
+            - ulimit -q 2048
             - export CFE_ROOT=$(pwd)/cFS
             - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
