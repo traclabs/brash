@@ -39,6 +39,7 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'cFS pull test'
           script:
+            - whoami
             - more /proc/sys/fs/mqueue/queues_max
             - more /proc/sys/fs/mqueue/msgsize_max
             - git clone git@github.com:traclabs/cFS.git
