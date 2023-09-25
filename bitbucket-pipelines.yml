@@ -39,6 +39,8 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'cFS pull test'
           script:
+            - more /proc/sys/fs/mqueue/queues_max
+            - more /proc/sys/fs/mqueue/msgsize_max
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git checkout submodule-cleanup
@@ -55,6 +57,7 @@ pipelines:
     full-brash-cfe-build:
       - step:
           image: osrf/ros:humble-desktop
+          run-as-user: 0
           name: 'checkout BRASH workspace'
           script:
             - apt update
@@ -108,7 +111,6 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'run colcon tests'
           script:
-            - ulimit -q 2048
             - export CFE_ROOT=$(pwd)/cFS
             - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
