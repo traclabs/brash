@@ -45,7 +45,7 @@ pipelines:
             - more /proc/sys/fs/mqueue/msgsize_max
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
-            # - git checkout submodule-cleanup
+            - git checkout submodule-cleanup
             - git submodule init
             - git submodule update
             - git checkout main
@@ -93,7 +93,7 @@ pipelines:
           script:
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
-            # - git checkout submodule-cleanup
+            - git checkout submodule-cleanup
             - git submodule init
             - git submodule update
             - git checkout main
