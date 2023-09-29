@@ -45,12 +45,13 @@ pipelines:
             - more /proc/sys/fs/mqueue/msgsize_max
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
-            - git checkout submodule-cleanup
+            - git checkout msg-queue-testing #submodule-cleanup
             - git submodule init
-            - git submodule update
+            - git submodule update --init --recursive
             # - git checkout main
             - cp cfe/cmake/Makefile.sample Makefile
             - cp -r cfe/cmake/sample_defs sample_defs
+            - ./submodule_status.sh
             - more osal/src/bsp/generic-linux/src/bsp_start.c
             - make SIMULATION=native prep
             - make
