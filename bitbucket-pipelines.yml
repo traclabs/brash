@@ -74,6 +74,7 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'build ROS packages'
           script:
+            - export CFE_ROOT=$(pwd)/cFS
             - source /opt/ros/humble/setup.bash
             - cd src/cfe_sbn_bridge_plugin
             - git checkout feature/launch-test-standup
@@ -110,4 +111,6 @@ pipelines:
             - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
             - touch cFS/COLCON_IGNORE
+            - ros2 test src/cfe_sbn_bridge_plugin/cfe_sbn_plugin/test/cfe_launch_test.py
+            - ros2 test src/cfe_sbn_bridge_plugin/cfe_sbn_plugin/test/gsw_bridge_telemetry_test.py
             - colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
