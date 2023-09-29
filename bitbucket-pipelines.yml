@@ -57,7 +57,6 @@ pipelines:
             - make install
             - popd
             - cd cFS/build/exe/cpu1
-            - sudo su
             - ./core-cpu1
             - sleep 30
             - ../host/cmdUtil --endian=LE --pktid=0x1806 --cmdcode=2 --half=0x0002
