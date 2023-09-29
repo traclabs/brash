@@ -37,34 +37,22 @@ pipelines:
 
     test-cfe-build:
       - step:
-          image:
-            name: osrf/ros:humble-desktop 
-            run-as-user: 65534
+          image: osrf/ros:humble-desktop
           name: 'cFS pull test'
           script:
-            - cat /etc/passwd
-            - id
-            - whoami
-            - more /proc/sys/fs/mqueue/queues_max
-            - more /proc/sys/fs/mqueue/msgsize_max
-            - more /proc/sys/fs/mqueue/msg_max
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
-            - git checkout msg-queue-testing #submodule-cleanup
-            - git submodule init
             - git submodule update --init --recursive
-            # - git checkout main
-            - cp cfe/cmake/Makefile.sample Makefile
-            - cp -r cfe/cmake/sample_defs sample_defs
+            # - cp cfe/cmake/Makefile.sample Makefile
+            # - cp -r cfe/cmake/sample_defs sample_defs
             - ./submodule_status.sh
-            - more osal/src/bsp/generic-linux/src/bsp_start.c
             - make SIMULATION=native prep
             - make
             - make install
             - popd
             - cd cFS/build/exe/cpu1
-            - ./core-cpu1
-            - sleep 30
+            - ./core-cpu1 | tee ../../../cFS_startup_cpu1.txt &
+            - sleep 30 
             - ../host/cmdUtil --endian=LE --pktid=0x1806 --cmdcode=2 --half=0x0002
 
     full-brash-cfe-build:
