@@ -43,8 +43,6 @@ pipelines:
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git submodule update --init --recursive
-            # - cp cfe/cmake/Makefile.sample Makefile
-            # - cp -r cfe/cmake/sample_defs sample_defs
             - ./submodule_status.sh
             - make SIMULATION=native prep
             - make
@@ -92,12 +90,8 @@ pipelines:
           script:
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
-            - git checkout submodule-cleanup
-            - git submodule init
-            - git submodule update
-            # - git checkout main
-            - cp cfe/cmake/Makefile.sample Makefile
-            - cp -r cfe/cmake/sample_defs sample_defs
+            - git submodule update --init --recursive
+            - ./submodule_status.sh
             - make SIMULATION=native prep
             - make
             - make install
