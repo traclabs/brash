@@ -38,9 +38,11 @@ pipelines:
     test-cfe-build:
       - step:
           image: osrf/ros:humble-desktop
-          run-as-user: 1000
+            run-as-user: 1000
           name: 'cFS pull test'
           script:
+            - cat /etc/passwd
+            - id
             - whoami
             - more /proc/sys/fs/mqueue/queues_max
             - more /proc/sys/fs/mqueue/msgsize_max
