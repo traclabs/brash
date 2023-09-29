@@ -46,6 +46,7 @@ pipelines:
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git checkout msg-queue-testing
+            - git branch 
             - git submodule init
             - git submodule update
             # - git checkout main
@@ -55,6 +56,8 @@ pipelines:
             - make
             - make install
             - popd
+            - cd cFS/build/exe/cpu1
+            - ./core-cpu1
 
     full-brash-cfe-build:
       - step:
