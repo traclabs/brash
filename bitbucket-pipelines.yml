@@ -46,6 +46,7 @@ pipelines:
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git checkout submodule-cleanup
+            - more osal/src/bsp/generic-linux/src/bsp_start.c
             - git submodule init
             - git submodule update
             # - git checkout main
