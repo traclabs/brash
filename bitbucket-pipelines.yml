@@ -51,7 +51,6 @@ pipelines:
             - cd cFS/build/exe/cpu1
             - ./core-cpu1 | tee ../../../cFS_startup_cpu1.txt &
             - sleep 30
-            - more ../../../cFS_startup_cpu1.txt
             - ../host/cmdUtil --endian=LE --pktid=0x1806 --cmdcode=2 --half=0x0002
 
     full-brash-cfe-build:
@@ -111,4 +110,4 @@ pipelines:
             - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
             - touch cFS/COLCON_IGNORE
-            - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
+            - colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
