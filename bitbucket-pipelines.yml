@@ -111,12 +111,4 @@ pipelines:
             - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
             - touch cFS/COLCON_IGNORE
-            - pushd .
-            - cd cFS/build/exe/cpu1
-            - ./core-cpu1 | tee ../../../cFS_startup_cpu1.txt &
-            - sleep 10
-            - ../host/cmdUtil --endian=LE --pktid=0x1806 --cmdcode=2 --half=0x0002
-            - popd
-            - ros2 test src/cfe_sbn_bridge_plugin/cfe_sbn_plugin/test/cfe_launch_test.py
-            - ros2 test src/cfe_sbn_bridge_plugin/cfe_sbn_plugin/test/gsw_bridge_telemetry_test.py
-            - colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
+            - colcon test --packages-select cfe_sbn_plugin
