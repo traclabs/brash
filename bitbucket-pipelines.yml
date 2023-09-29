@@ -37,8 +37,9 @@ pipelines:
 
     test-cfe-build:
       - step:
-          image: osrf/ros:humble-desktop
-          run-as-user: 65534
+          image:
+            name: osrf/ros:humble-desktop 
+            run-as-user: 65534
           name: 'cFS pull test'
           script:
             - cat /etc/passwd
