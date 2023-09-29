@@ -43,6 +43,7 @@ pipelines:
             - whoami
             - more /proc/sys/fs/mqueue/queues_max
             - more /proc/sys/fs/mqueue/msgsize_max
+            - more /proc/sys/fs/mqueue/msg_max
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git checkout msg-queue-testing #submodule-cleanup
