@@ -46,7 +46,7 @@ pipelines:
             - apt-get install -y sudo
             - echo traclabs ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/traclabs
             - chmod 0440 /etc/sudoers.d/traclabs
-            - sudo -u traclabs /bin/bash
+            - su traclabs
             - whoami
             - cd
             - pwd
