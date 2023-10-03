@@ -40,18 +40,27 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'cFS pull test'
           script:
-            - git clone git@github.com:traclabs/cFS.git
-            - pushd cFS
-            - git submodule update --init --recursive
-            - ./submodule_status.sh
-            - make SIMULATION=native prep
-            - make
-            - make install
-            - popd
-            - cd cFS/build/exe/cpu1
-            - ./core-cpu1 | tee ../../../cFS_startup_cpu1.txt &
-            - sleep 30
-            - ../host/cmdUtil --endian=LE --pktid=0x1806 --cmdcode=2 --half=0x0002
+            - groupadd --gid 1000 traclabs
+            - useradd -s /bin/bash --uid 1000 --gid 1000 -m traclabs
+            - apt-get update
+            - apt-get install -y sudo
+            - echo traclabs ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/traclabs
+            - chmod 0440 /etc/sudoers.d/traclabs
+            - sudo -l traclabs
+            - whoami
+            - ls
+            # - git clone git@github.com:traclabs/cFS.git
+            # - pushd cFS
+            # - git submodule update --init --recursive
+            # - ./submodule_status.sh
+            # - make SIMULATION=native prep
+            # - make
+            # - make install
+            # - popd
+            # - cd cFS/build/exe/cpu1
+            # - ./core-cpu1 | tee ../../../cFS_startup_cpu1.txt &
+            # - sleep 30
+            # - ../host/cmdUtil --endian=LE --pktid=0x1806 --cmdcode=2 --half=0x0002
 
     full-brash-cfe-build:
       - step:
