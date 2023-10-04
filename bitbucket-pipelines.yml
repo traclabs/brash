@@ -55,8 +55,8 @@ pipelines:
             - chown -R traclabs ./cFS
             # - ./cFS/submodule_status.sh
             - pushd cFS
-            - - su -s /bin/bash -c "make SIMULATION=native prep" traclabs
-            - - su -s /bin/bash -c "make" traclabs
+            - su -s /bin/bash -c "make SIMULATION=native prep" traclabs
+            - su -s /bin/bash -c "make" traclabs
             - su -s /bin/bash -c "make install" traclabs
             - popd
             - cd cFS/build/exe/cpu1
