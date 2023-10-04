@@ -125,6 +125,6 @@ pipelines:
             - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
             - touch cFS/COLCON_IGNORE
-            - su -s /bin/bash -c "- CFE_ROOT=$(pwd)/cFS && colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure" traclabs
+            - su -s /bin/bash -c "CFE_ROOT=$(pwd)/cFS && colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure" traclabs
             # - CFE_ROOT=$(pwd)/cFS && colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
             - more log/latest_test/cfe_sbn_plugin/stdout_stderr.log
