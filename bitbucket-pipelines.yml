@@ -57,9 +57,9 @@ pipelines:
             - pushd cFS
             - make SIMULATION=native prep
             - make
-            - su -s /bin/bash -c "make install" traclabs
+            - make install
             - popd
-            - cd cFS/build/exe/cpu1
+            - cd build/exe/cpu1
             - su -s /bin/bash -c "./core-cpu1 &" traclabs
             # - su -s /bin/bash -c "./core-cpu1 | tee ../../../cFS_startup_cpu1.txt &" traclabs
             # - sleep 30
