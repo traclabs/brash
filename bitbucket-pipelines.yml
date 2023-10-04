@@ -46,7 +46,7 @@ pipelines:
             - apt-get install -y sudo
             - echo traclabs ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/traclabs
             - chmod 0440 /etc/sudoers.d/traclabs
-            - chown -R traclabs: /opt/atlassian/bitbucketci/agent/build
+            - chown -R traclabs /opt/atlassian/bitbucketci/agent/build
             - su -s /bin/bash -c "whoami" traclabs
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
