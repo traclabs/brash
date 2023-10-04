@@ -119,12 +119,12 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'run colcon tests'
           script:
-            # - ulimit -q 2048
             - pwd
             - ls
             - export CFE_ROOT=$(pwd)/cFS
             - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
             - touch cFS/COLCON_IGNORE
-            # - su -s /bin/bash -c "colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure" traclabs
-            - CFE_ROOT=$(pwd)/cFS && colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
+            - su -s /bin/bash -c "- CFE_ROOT=$(pwd)/cFS && colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure" traclabs
+            # - CFE_ROOT=$(pwd)/cFS && colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
+            - more log/latest_test/cfe_sbn_plugin/stdout_stderr.log
