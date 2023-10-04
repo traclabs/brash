@@ -53,7 +53,7 @@ pipelines:
             - git submodule update --init --recursive
             - cd ..
             - chown -R traclabs ./cFS
-            - ./cFS/submodule_status.sh
+            # - ./cFS/submodule_status.sh
             - su -s /bin/bash -c "make SIMULATION=native prep" traclabs
             - su -s /bin/bash -c "make" traclabs
             - su -s /bin/bash -c "make install" traclabs
