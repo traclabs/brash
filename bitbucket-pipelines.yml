@@ -135,4 +135,4 @@ pipelines:
             - ls
             - cd cfe_sbn_plugin
             - ls
-            - more log/latest_test/cfe_sbn_plugin/stdout_stderr.log
+            - more stdout_stderr.log
