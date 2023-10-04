@@ -120,7 +120,8 @@ pipelines:
           name: 'run colcon tests'
           script:
             # - ulimit -q 2048
-            - cd
+            - pwd
+            - ls
             - export CFE_ROOT=$(pwd)/cFS
             - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
