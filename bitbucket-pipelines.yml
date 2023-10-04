@@ -51,6 +51,7 @@ pipelines:
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git submodule update --init --recursive
+            - cd ..
             - chown -R traclabs ./cFS
             - ./submodule_status.sh
             - su -s /bin/bash -c "make SIMULATION=native prep" traclabs
