@@ -131,4 +131,8 @@ pipelines:
             - ls
             - cd log
             - ls
+            - cd latest_build
+            - ls
+            - cd cfe_sbn_plugin
+            - ls
             - more log/latest_test/cfe_sbn_plugin/stdout_stderr.log
