@@ -38,7 +38,7 @@ pipelines:
     test-cfe-build:
       - step:
           image: osrf/ros:humble-desktop
-          name: 'cFS pull test'
+          name: 'checkout, build, and run cFS'
           script:
             - groupadd --gid 1000 traclabs
             - useradd -s /bin/bash --uid 1000 --gid 1000 -m traclabs
@@ -46,7 +46,6 @@ pipelines:
             - apt-get install -y sudo
             - echo traclabs ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/traclabs
             - chmod 0440 /etc/sudoers.d/traclabs
-            # - chown -R traclabs /opt/atlassian/bitbucketci/agent/build
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git submodule update --init --recursive
@@ -56,7 +55,6 @@ pipelines:
             - make install
             - popd
             - cd cFS/build/exe/cpu1
-            # - ./core-cpu1 &
             - su -s /bin/bash -c "./core-cpu1 | tee ../../../cFS_startup_cpu1.txt &" traclabs
             - sleep 30
             - su -s /bin/bash -c "../host/cmdUtil --endian=LE --pktid=0x1806 --cmdcode=2 --half=0x0002" traclabs
@@ -97,6 +95,12 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'checkout cFS'
           script:
+            - groupadd --gid 1000 traclabs
+            - useradd -s /bin/bash --uid 1000 --gid 1000 -m traclabs
+            - apt-get update
+            - apt-get install -y sudo
+            - echo traclabs ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/traclabs
+            - chmod 0440 /etc/sudoers.d/traclabs
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
             - git submodule update --init --recursive
@@ -119,4 +123,4 @@ pipelines:
             - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
             - touch cFS/COLCON_IGNORE
-            - colcon test --packages-select cfe_sbn_plugin
+            - su -s /bin/bash -c "colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure" traclabs
