@@ -46,13 +46,14 @@ pipelines:
             - apt-get install -y sudo
             - echo traclabs ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/traclabs
             - chmod 0440 /etc/sudoers.d/traclabs
-            - su traclabs
-            - whoami
-            - cd
-            - pwd
-            # - git clone git@github.com:traclabs/cFS.git
-            # - pushd cFS
-            # - git submodule update --init --recursive
+            - su -s /bin/bash -c "whoami" traclabs
+            - su -s /bin/bash -c "pwd" traclabs
+            # - whoami
+            # - cd
+            # - pwd
+            - su -s /bin/bash -c "git clone git@github.com:traclabs/cFS.git" traclabs
+            - su -s /bin/bash -c "pushd cFS" traclabs
+            - su -s /bin/bash -c "git submodule update --init --recursive" traclabs
             # - ./submodule_status.sh
             # - make SIMULATION=native prep
             # - make
