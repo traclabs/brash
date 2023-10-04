@@ -47,20 +47,16 @@ pipelines:
             - echo traclabs ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/traclabs
             - chmod 0440 /etc/sudoers.d/traclabs
             - su -s /bin/bash -c "whoami" traclabs
-            - su -s /bin/bash -c "pwd" traclabs
-            # - whoami
-            # - cd
-            # - pwd
-            - su -s /bin/bash -c "git clone git@github.com:traclabs/cFS.git" traclabs
-            - su -s /bin/bash -c "pushd cFS" traclabs
-            - su -s /bin/bash -c "git submodule update --init --recursive" traclabs
+            # - git clone git@github.com:traclabs/cFS.git
+            # - pushd cFS
+            # - git submodule update --init --recursive
             # - ./submodule_status.sh
             # - make SIMULATION=native prep
             # - make
             # - make install
             # - popd
             # - cd cFS/build/exe/cpu1
-            # - ./core-cpu1 | tee ../../../cFS_startup_cpu1.txt &
+            - su -s /bin/bash -c "./core-cpu1 | tee ../../../cFS_startup_cpu1.txt &" traclabs
             # - sleep 30
             # - ../host/cmdUtil --endian=LE --pktid=0x1806 --cmdcode=2 --half=0x0002
 
