@@ -59,7 +59,7 @@ pipelines:
             - make
             - make install
             - popd
-            - cd build/exe/cpu1
+            - cd cFS/build/exe/cpu1
             - su -s /bin/bash -c "./core-cpu1 &" traclabs
             # - su -s /bin/bash -c "./core-cpu1 | tee ../../../cFS_startup_cpu1.txt &" traclabs
             # - sleep 30
