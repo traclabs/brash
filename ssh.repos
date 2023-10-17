@@ -27,3 +27,7 @@ repositories:
     type: git
     url: git@bitbucket.org:traclabs/rqt_fsw_bridge_dictionary.git
     version: devel
+  rosbridge_suite:
+    type: git
+    url: git@bitbucket.org:scottbell/rosbridge_suite.git
+    version: ros2
