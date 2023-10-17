@@ -11,4 +11,4 @@ fi
 
 mkdir -p src
 vcs import src < https.repos
-colcon build
+colcon build --symlink-install
