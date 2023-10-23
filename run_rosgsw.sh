@@ -32,6 +32,11 @@ ros2 launch cfe_plugin cfe_bridge.launch.py &> ${LOG_DIR}/rosgsw_cfebridge.log &
 echo "Starting ROSGSW CFDP"
 mkdir -p ${CFDP_DIR}
 ros2 run cfdp_wrapper cfdp_wrapper.py --ros-args -r __node:=cfdpgsw -p entityID:=${CFDP_EID} -p "filestore:=${CFDP_DIR}" &> ${LOG_DIR}/rosgsw_cfdp.log &
+
+echo "Waiting for startup"
+sleep 10
+echo "Enabling TO"
+ros2 topic pub --once /groundsystem/to_lab_enable_output_cmd cfe_msgs/msg/TOLABEnableOutputCmdt "{\"payload\":{\"dest_ip\":\"${ROSGSW_IP}\"}}"
               
 # Wait for any process to exit
 echo "Waiting for tasks to exit"

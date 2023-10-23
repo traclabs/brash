@@ -27,3 +27,7 @@ repositories:
     type: git
     url: git@bitbucket.org:traclabs/rqt_fsw_bridge_dictionary.git
     version: devel
+  cfe_cfdp:
+    type: git
+    url: git@bitbucket.org:traclabs/cfe_cfdp.git
+    version: devel
