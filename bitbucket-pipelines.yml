@@ -7,8 +7,9 @@ pipelines:
           script:
             - apt update
             - export DEBIAN_FRONTEND=noninteractive
-            - apt -y install git python3-rosdep python3-vcstool python3-wstool python3-colcon*
+            - apt -y install git python3-pip python3-rosdep python3-wstool python3-colcon*
             - apt -y upgrade
+            - pip3 install vcstool
             - source /opt/ros/humble/setup.bash
             - rosdep update
             - mkdir src
@@ -37,20 +38,26 @@ pipelines:
     test-cfe-build:
       - step:
           image: osrf/ros:humble-desktop
-          name: 'cFS pull test'
+          name: 'checkout, build, and run cFS'
           script:
+            - groupadd --gid 1000 traclabs
+            - useradd -s /bin/bash --uid 1000 --gid 1000 -m traclabs
+            - apt-get update
+            - apt-get install -y sudo
+            - echo traclabs ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/traclabs
+            - chmod 0440 /etc/sudoers.d/traclabs
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
-            - git checkout submodule-cleanup
-            - git submodule init
-            - git submodule update
-            - git checkout main
-            - cp cfe/cmake/Makefile.sample Makefile
-            - cp -r cfe/cmake/sample_defs sample_defs
+            - git submodule update --init --recursive
+            - ./submodule_status.sh
             - make SIMULATION=native prep
             - make
             - make install
-            - cd ..
+            - popd
+            - cd cFS/build/exe/cpu1
+            - su -s /bin/bash -c "./core-cpu1 | tee ../../../cFS_startup_cpu1.txt &" traclabs
+            - sleep 30
+            - su -s /bin/bash -c "../host/cmdUtil --endian=LE --pktid=0x1806 --cmdcode=2 --half=0x0002" traclabs
 
     full-brash-cfe-build:
       - step:
@@ -59,8 +66,9 @@ pipelines:
           script:
             - apt update
             - export DEBIAN_FRONTEND=noninteractive
-            - apt -y install git python3-rosdep python3-vcstool python3-wstool python3-colcon*
+            - apt -y install git python3-pip python3-rosdep python3-wstool python3-colcon*
             - apt -y upgrade
+            - pip3 install vcstool
             - source /opt/ros/humble/setup.bash
             - rosdep update
             - mkdir src
@@ -72,6 +80,7 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'build ROS packages'
           script:
+            - export CFE_ROOT=$(pwd)/cFS
             - source /opt/ros/humble/setup.bash
             - cd src/cfe_sbn_bridge_plugin
             - git checkout feature/launch-test-standup
@@ -86,18 +95,20 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'checkout cFS'
           script:
+            - groupadd --gid 1000 traclabs
+            - useradd -s /bin/bash --uid 1000 --gid 1000 -m traclabs
+            - apt-get update
+            - apt-get install -y sudo
+            - echo traclabs ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/traclabs
+            - chmod 0440 /etc/sudoers.d/traclabs
             - git clone git@github.com:traclabs/cFS.git
             - pushd cFS
-            - git checkout submodule-cleanup
-            - git submodule init
-            - git submodule update
-            - git checkout main
-            - cp cfe/cmake/Makefile.sample Makefile
-            - cp -r cfe/cmake/sample_defs sample_defs
+            - git submodule update --init --recursive
+            - ./submodule_status.sh
             - make SIMULATION=native prep
             - make
             - make install
-            - cd ..
+            - popd
           artifacts:
             - build/**
             - log/**
@@ -108,9 +119,20 @@ pipelines:
           image: osrf/ros:humble-desktop
           name: 'run colcon tests'
           script:
-            - ulimit -q 2048
+            - pwd
+            - ls
             - export CFE_ROOT=$(pwd)/cFS
             - source /opt/ros/humble/setup.bash  
             - . install/local_setup.bash
             - touch cFS/COLCON_IGNORE
-            - colcon test  --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
+            - su -s /bin/bash -c "CFE_ROOT=$(pwd)/cFS && colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure" traclabs
+            # - CFE_ROOT=$(pwd)/cFS && colcon test --event-handlers console_cohesion+ --ctest-args " -VVV" --return-code-on-test-failure
+            - pwd
+            - ls
+            - cd log
+            - ls
+            - cd latest_build
+            - ls
+            - cd cfe_sbn_plugin
+            - ls
+            - more stdout_stderr.log

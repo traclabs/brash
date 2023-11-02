@@ -31,3 +31,7 @@ repositories:
     type: git
     url: https://bitbucket.org/traclabs/cfe_cfdp.git
     version: devel
+  rosbridge_suite:
+    type: git
+    url: https://github.com/scottbell/rosbridge_suite.git
+    version: ros2
