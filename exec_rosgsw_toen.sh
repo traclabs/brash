@@ -3,7 +3,7 @@ set -e
 
 DO_ROS_SOURCE=1
 DO_LOCAL_SOURCE=1
-ROS_VERSION="galactic"
+ROS_VERSION="humble"
 
 ROSGSW_IP=${ROSGSW_IP:-"127.0.0.1"}
 
