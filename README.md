@@ -60,7 +60,7 @@ Ana Huaman Quispe ana@traclabs.com
     * `cd ~/code`
     * `mkdir humble_ws`
     * `cd humble_ws`
-    * `git clone git@bitbucket.org:traclabs/brash.git`
+    * `git clone git@github.com:traclabs/brash.git`
     * `cd brash`
     * `git checkout vcstool`
     * `vcs import src < brash.repos`
