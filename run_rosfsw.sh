@@ -23,8 +23,8 @@ if [[ $DO_LOCAL_SOURCE -eq 1 ]]; then
 fi
 
 # Start ROS FSW Interface
-echo "Starting cfe_bridge"
-ros2 launch cfe_sbn_plugin cfe_sbn_bridge.launch.py &> ${LOG_DIR}/rosfsw_sbn.log &
+echo "Starting cfe_sbn_bridge"
+ros2 launch cfe_sbn_plugin cfe_sbn_bridge.launch.py cfe_sbn_config:='cfe_sbn_config_multihost.yaml' &> ${LOG_DIR}/rosfsw_sbn.log &
 
 # Start ROS FSW CFDP Instance
 echo "Starting ROSGSW CFDP"

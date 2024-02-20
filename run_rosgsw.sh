@@ -26,7 +26,7 @@ fi
 #PARAMS="-p \"plugin_params.commandHost=fsw\""
 #export FSW_CMD_HOST=fsw
 echo "Starting cfe_bridge"
-ros2 launch cfe_plugin cfe_bridge.launch.py &> ${LOG_DIR}/rosgsw_cfebridge.log &
+ros2 launch cfe_plugin cfe_bridge.launch.py cfe_config:='cfe_config_multihost.yaml' &> ${LOG_DIR}/rosgsw_cfebridge.log &
 
 # Start ROS GSW CFDP Instance
 echo "Starting ROSGSW CFDP"
