@@ -2,7 +2,7 @@
 BRASH is a NASA-funded Phase II STTR focused on developing tools for integrating ROS2 with Flight Software (FSW) tools such as cFS and F'.
 
 ### Contact
-Ana Huaman Quispe ana@traclabs.com
+Questions or comments? Write to brash@traclabs.com
 
 
 # Installation notes for BRASH on Ubuntu 22.04 using ROS2 humble
