@@ -3,6 +3,10 @@ repositories:
     type: git
     url: git@github.com:traclabs/brash_application_tools.git
     version: devel
+  brash_tools:
+    type: git
+    url: git@github.com:traclabs/brash_tools.git
+    version: devel
   cfe_ros2_bridge_plugin:
     type: git
     url: git@github.com:traclabs/cfe_ros2_bridge_plugin.git
