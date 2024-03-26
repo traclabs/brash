@@ -29,7 +29,7 @@ ros2 launch cfe_sbn_plugin cfe_sbn_bridge.launch.py cfe_sbn_config:='cfe_sbn_con
 # Start ROS FSW CFDP Instance
 echo "Starting ROSGSW CFDP"
 mkdir -p ${CFDP_DIR}
-ros2 run cfdp_wrapper cfdp_wrapper.py --ros-args -r __node:=cfdpfsw -p entityID:=${CFDP_EID} -p "filestore:=${CFDP_DIR}" -p "pduTopicPrefix:=/rosfsw/cfdp/pdu/entity" &> ${LOG_DIR}/rosfsw_cfdp.log &
+ros2 launch cfdp_wrapper cfdp_wrapper.launch.py entityID:=${CFDP_EID} filestore:="${CFDP_DIR}" namespace:="/flightsystem" &> ${LOG_DIR}/rosfsw_cfdp.log &
 
 
 # Wait for any process to exit
