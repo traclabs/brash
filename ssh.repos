@@ -10,7 +10,7 @@ repositories:
   cfe_ros2_bridge_plugin:
     type: git
     url: git@github.com:traclabs/cfe_ros2_bridge_plugin.git
-    version: hotfix/loop_sbn
+    version: fsw_demos
   cfe_sbn_bridge_plugin:
     type: git
     url: git@github.com:traclabs/cfe_sbn_bridge_plugin.git
