@@ -2,7 +2,7 @@ repositories:
   brash_application_tools:
     type: git
     url: https://github.com/traclabs/brash_application_tools.git
-    version: devel
+    version: fsw_demos
   brash_tools:
     type: git
     url: https://github.com/traclabs/brash_tools.git
