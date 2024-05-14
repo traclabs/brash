@@ -31,7 +31,7 @@ ros2 launch cfe_plugin cfe_bridge.launch.py cfe_config:='cfe_config_multihost.ya
 # Start ROS GSW CFDP Instance
 echo "Starting ROSGSW CFDP"
 mkdir -p ${CFDP_DIR}
-ros2 run cfdp_wrapper cfdp_wrapper.py --ros-args -r __node:=cfdpgsw -p entityID:=${CFDP_EID} -p "filestore:=${CFDP_DIR}" &> ${LOG_DIR}/rosgsw_cfdp.log &
+ros2 launch cfdp_wrapper cfdp_wrapper.launch.py entityID:=${CFDP_EID} filestore:=${CFDP_DIR} &> ${LOG_DIR}/rosgsw_cfdp.log &
 
 echo "Waiting for startup"
 sleep 10
